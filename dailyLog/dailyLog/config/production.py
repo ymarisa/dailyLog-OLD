@@ -7,3 +7,5 @@ DEBUG = False
 import django_heroku
 django_heroku.settings(locals())
 
+WSGI_APPLICATION = 'dailyLog.wsgi.application'
+
