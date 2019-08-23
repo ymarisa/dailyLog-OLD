@@ -5,7 +5,14 @@ import sys
 
 
 def main():
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dailyLog.settings')
+    if 'DYNO' in os.environ:
+        default_settings_file = 'dailyLog.config.production'
+    else:
+        default_settings_file = 'dailyLog.config.local'
+
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', default_settings_file)
+    # os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dailyLog.settings')
+
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
